@@ -1,0 +1,10 @@
+TARGETS = rsyslog unattended-upgrades killprocs single dbus ssh cron rsync rc.local grub-common ondemand
+INTERACTIVE =
+single: killprocs
+dbus: rsyslog
+ssh: rsyslog
+cron: rsyslog
+rsync: rsyslog
+rc.local: rsyslog unattended-upgrades dbus ssh cron rsync
+grub-common: rsyslog unattended-upgrades dbus ssh cron rsync
+ondemand: rsyslog unattended-upgrades dbus ssh cron rsync

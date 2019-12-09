@@ -1,0 +1,10 @@
+TARGETS = unattended-upgrades resolvconf urandom sendsigs rsyslog umountnfs.sh hwclock.sh networking umountfs umountroot halt reboot
+sendsigs: unattended-upgrades
+rsyslog: sendsigs
+umountnfs.sh: rsyslog sendsigs unattended-upgrades
+hwclock.sh: rsyslog
+networking: umountnfs.sh
+umountfs: urandom resolvconf hwclock.sh umountnfs.sh unattended-upgrades networking
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot
